@@ -551,7 +551,6 @@ class CustomTool:
 
 - **💬 讨论**: [GitHub Discussions](https://github.com/HKUDS/AI-Trader/discussions)
 - **🐛 问题**: [GitHub Issues](https://github.com/HKUDS/AI-Trader/issues)
-- **📧 联系**: your-email@example.com
 
 ## 📄 许可证
 

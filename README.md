@@ -545,7 +545,6 @@ We welcome contributions of all kinds! Especially AI trading strategies and agen
 
 - **💬 Discussions**: [GitHub Discussions](https://github.com/HKUDS/AI-Trader/discussions)
 - **🐛 Issues**: [GitHub Issues](https://github.com/HKUDS/AI-Trader/issues)
-- **📧 Contact**: your-email@example.com
 
 ## 📄 License
 
