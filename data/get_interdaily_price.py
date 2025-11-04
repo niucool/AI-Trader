@@ -74,7 +74,7 @@ def update_json(data: dict, SYMBOL: str):
 
 
 
-def get_daily_price(SYMBOL: str):
+def get_daily_price2(SYMBOL: str):
     # FUNCTION = "TIME_SERIES_DAILY"
     FUNCTION = "TIME_SERIES_INTRADAY"
     INTERVAL = "60min"
@@ -87,6 +87,26 @@ def get_daily_price(SYMBOL: str):
     if data.get('Note') is not None or data.get('Information') is not None:
         print(f"Error")
         return
+    update_json(data, SYMBOL)
+
+def get_daily_price(SYMBOL: str):
+    from alpha_vantage.timeseries import TimeSeries
+    # FUNCTION = "TIME_SERIES_DAILY"
+    FUNCTION = "TIME_SERIES_INTRADAY"
+    INTERVAL = "60min"
+    OUTPUTSIZE = 'full'
+    APIKEY = os.getenv("ALPHAADVANTAGE_API_KEY")
+
+    ts = TimeSeries(key=APIKEY, output_format='json')
+    data, meta_data = ts.get_intraday(symbol=SYMBOL, interval=INTERVAL, outputsize=OUTPUTSIZE)
+
+    # url = f'https://www.alphavantage.co/query?function={FUNCTION}&symbol={SYMBOL}&interval={INTERVAL}&outputsize={OUTPUTSIZE}&entitlement=delayed&extended_hours=false&apikey={APIKEY}'
+    # r = requests.get(url)
+    # data = r.json()
+    print(data)
+    # if data.get('Note') is not None or data.get('Information') is not None:
+    #     print(f"Error")
+    #     return
     update_json(data, SYMBOL)
 
 

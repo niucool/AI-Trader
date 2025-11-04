@@ -2,7 +2,10 @@ from fastmcp import FastMCP
 import sys
 import os
 from typing import Dict, List, Optional, Any
-import fcntl
+if os.name == 'nt':  # Check if running on Windows
+	import winfcntl as fcntl
+else:
+	import fcntl
 from pathlib import Path
 # Add project root directory to Python path
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
