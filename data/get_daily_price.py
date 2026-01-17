@@ -113,6 +113,7 @@ all_nasdaq_100_symbols = [
     "GFS",
 ]
 
+AV_KEY = os.getenv("ALPHAADVANTAGE_API_KEY")
 
 
 def get_daily_price_av(SYMBOL: str):
@@ -204,8 +205,7 @@ def get_daily_price_yf(SYMBOL: str):
 
 
 def get_intraday_price_yf(SYMBOL: str, interval: str = "60m"):
-    import yfinance as yf
-    
+   
     # Map interval to standardized format
     # user asked for "60min", yfinance uses "60m"
     if interval == "60min":
@@ -255,16 +255,18 @@ def get_intraday_price_yf(SYMBOL: str, interval: str = "60m"):
         time_series_key: time_series
     }
     
-    filename = f"./intraday_prices_{SYMBOL}_{interval}.json"
+    filename = f"./daily_prices_{SYMBOL}.json"
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
+    if SYMBOL == "QQQ":
+        with open(f"./Adaily_prices_{SYMBOL}.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
         
     print(f"Saved intraday data to {filename}")
 
 def get_daily_price(SYMBOL: str):
-    av_key = os.getenv("ALPHAADVANTAGE_API_KEY")
     
-    if av_key:
+    if AV_KEY:
         get_daily_price_av(SYMBOL)
     else:
         get_intraday_price_yf(SYMBOL)
