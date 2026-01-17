@@ -49,7 +49,8 @@ class BaseAgent_Hour(BaseAgent):
         print(f"📈 Starting trading session: {today_date}")
         
         # Set up logging
-        log_file = self._setup_logging(today_date)
+        dos_date = today_date.replace(':', '').replace(' ', '_')
+        log_file = self._setup_logging(dos_date)
         write_config_value("LOG_FILE", log_file)
         
         # Update system prompt
@@ -279,10 +280,11 @@ class BaseAgent_Hour(BaseAgent):
             write_config_value("TODAY_DATE", date)
             write_config_value("SIGNATURE", self.signature)
             
+            # dos_date = date.replace(':', '').replace(' ', '_')
             try:
                 await self.run_with_retry(date)
             except Exception as e:
-                print(f"❌ Error processing {self.signature} - Date: {date}")
+                print(f"❌ X Error processing {self.signature} - Date: {date}")
                 print(e)
                 raise
         

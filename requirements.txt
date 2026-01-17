@@ -6,3 +6,5 @@ fastmcp==2.12.5
 tushare
 efinance
 alpha_vantage
+yfinance
+winfcntl
